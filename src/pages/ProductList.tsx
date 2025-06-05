@@ -16,14 +16,18 @@ export default function ProductList() {
   const [products, setProduct] = useState([]);
 
   useEffect(() => {
-    fetchProductList().then(setProduct).catch(console.error);
-    setIsLoading(false);
+    fetchProductList()
+      .then(setProduct)
+      .catch(console.error)
+      .finally(() => setIsLoading(false));
   }, []);
 
   return (
     <>
       {isLoading ? (
-        <div>Loading....</div>
+        <div className="flex justify-center items-center text-xl text-slate-600 bg-black/5 h-10">
+          Loading....
+        </div>
       ) : (
         <div className="page-container">
           <h1 className="title">Product List</h1>
